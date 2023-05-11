@@ -627,7 +627,7 @@
               {
                      "columns": 12,
                      "firstgid": 1,
-                     "image": "..\/mapSuorces\/Tilemap\/tilemap_packed.png",
+                     "image": "\/src\/assets\/mapSuorces\/tilemap_packed.png",
                      "imageheight": 176,
                      "imagewidth": 192,
                      "margin": 0,
