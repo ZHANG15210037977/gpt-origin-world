@@ -1,22 +1,31 @@
 import { getSayWreap } from '@/action/utils/text'
 import Phaser from 'phaser'
+import { characterMap, CharacterCard } from '../memory/character'
 
 export interface PersonConfig {
-  name: string;
-  scene: Phaser.Scene;
-  x: number;
-  y: number;
-  texture: string;
-  frame?: string | number;
+  scene: Phaser.Scene
+  x: number
+  y: number
+  texture: string
+  frame?: string | number
+  name?: string
+  characterId: string
 }
 
 export class Person extends Phaser.Physics.Arcade.Sprite {
   public name: string // 名字
   private nameLabel: Phaser.GameObjects.Text;
+  private characterId: string // 人设卡
 
   constructor(config: PersonConfig) {
     super(config.scene, config.x, config.y, config.texture, config.frame);
-    this.name = config.name;
+
+    // TODO 结合GPT 动态增加
+    const info = this.getInfo(config.characterId)
+    this.name = info?.name || config.name || '无名氏'
+    this.characterId = config.characterId
+
+
     this.nameLabel = config.scene.add.text(0, 0, this.name, { fontSize: '12px', color: '#000' });
     this.nameLabel.setOrigin(0.5, 1); // Center the label's origin to its position
 
@@ -54,6 +63,11 @@ export class Person extends Phaser.Physics.Arcade.Sprite {
         bubble.destroy()
       },
     });
+  }
+
+  getInfo(characterId?: string) {
+    const reslut = characterMap.get(characterId || this.characterId)
+    return reslut ? reslut : null
   }
 
 

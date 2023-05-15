@@ -39,8 +39,8 @@ export class Scene extends Phaser.Scene {
 		let tiles = map.addTilesetImage('tilemap', 'tilemap')
 		map.createLayer('layer1', tiles || [], 0, 0)
 
-		this.personList.push(this.addPerson('Join'))
-		this.personList.push(this.addPerson('Tom', 100, 100, 'person2'))
+		this.personList.push(this.addPerson('1'))
+		this.personList.push(this.addPerson('2', 100, 100, 'person2'))
 		this.targePerson = {
 			cursors,
 			person: this.personList[0]
@@ -72,15 +72,15 @@ export class Scene extends Phaser.Scene {
 		}
 	}
 
-	addPerson(name: string, x = 50, y = 50, texture = 'person1') {
+	addPerson(characterId: string, x = 50, y = 50, texture = 'person1') {
 		const person = new Person({
-			name,
+			characterId,
 			scene: this,
 			x,
 			y,
 			texture,
 		})
-		Reflect.set(window, name, person)
+		Reflect.set(window, person.name, person)
 		return person
 	}
 }
