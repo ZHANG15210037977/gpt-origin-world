@@ -1,6 +1,7 @@
 import Phaser from 'phaser'
 import { PERSON_TILED_LIST } from '@/action/constant/tiled'
 import { Person } from '@/action/person'
+import { start } from '@/control'
 
 export class Scene extends Phaser.Scene {
 	public personList: Person[]
@@ -40,7 +41,7 @@ export class Scene extends Phaser.Scene {
 		map.createLayer('layer1', tiles || [], 0, 0)
 
 		this.personList.push(this.addPerson('1'))
-		this.personList.push(this.addPerson('2', 100, 100, 'person2'))
+		this.personList.push(this.addPerson('2', 200, 200, 'person2'))
 		this.targePerson = {
 			cursors,
 			person: this.personList[0]
@@ -70,16 +71,17 @@ export class Scene extends Phaser.Scene {
 		} else {
 			person.setVelocityY(0)
 		}
+		start(this)
 	}
 
-	addPerson(characterId: string, x = 50, y = 50, texture = 'person1') {
+	addPerson(characterId: string, x = 300, y = 300, texture = 'person1') {
 		const person = new Person({
 			characterId,
 			scene: this,
 			x,
 			y,
 			texture,
-		})
+		}, characterId === '1' ? { text: '去一个陌生的地方写作' } : undefined)
 		Reflect.set(window, person.name, person)
 		return person
 	}

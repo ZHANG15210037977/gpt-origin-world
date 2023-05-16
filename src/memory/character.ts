@@ -19,6 +19,7 @@ export const characterOne: CharacterCard = {
   age: 25,
   personality: ['自信', '独立', '冷静', '镇定', '开放', '包容'],
   hobbies: ['独自旅行', '阅读', '写作'],
+  skills: ['吃', '喝', '走', '说', '交流', '写作'],
   plans: ['成为一名作家', '探索新的地方和文化']
 };
 
@@ -31,7 +32,7 @@ export const characterTwo: CharacterCard = {
   hobbies: ['打篮球', '看电影', '听音乐'],
   plans: ['提升技术能力', '学习新技术', '参加技术交流会'],
   job: ['IT 工程师'],
-  skills: ['Java', 'Python', 'JavaScript', 'SQL']
+  skills: ['吃', '喝', '走', '说', '做饭', '写代码',]
 };
 
 export const characterMap = new Map<string, CharacterCard>([
