@@ -19,6 +19,7 @@ const init = () => {
     },
     scene,
   })
+  ;(window as any).scene = scene
   console.log('game', game)
 }
 

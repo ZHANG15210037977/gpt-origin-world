@@ -12,8 +12,7 @@ function calculateBubbleDimensions(config: {
   let width = Math.min(text.length, maxCharsPerLine) * charWidth + padding * 2;
   let height = Math.min(lines, 3) * lineHeight + padding * 2;
 
-  console.log('lines:', lines)
-  let renderText = ''
+  let renderText = text
   // If the text is more than 3 lines, truncate and add ellipsis
   if (lines >= 2) {
     renderText = text.substring(0, maxCharsPerLine * 2 - 3) + "...";
@@ -30,7 +29,7 @@ export function getSayWreap(text: string, person: Person, scene: Phaser.Scene) {
   const { width: bubbleWidth, height: bubbleHeight, text: renderText } = calculateBubbleDimensions({
     text, maxCharsPerLine, fontSize, lineHeight, padding: 16
   });
-
+  // console.log('renderText:', renderText)
   let bubble = scene.add.graphics({ x: person.x - bubbleWidth / 2, y: person.y - 2 - bubbleHeight - 20 }); // Adjusted the x position
   bubble.fillStyle(0xffffff, 1);
   bubble.fillRoundedRect(0, 0, bubbleWidth, bubbleHeight, 16);

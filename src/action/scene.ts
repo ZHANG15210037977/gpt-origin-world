@@ -28,6 +28,16 @@ export class Scene extends Phaser.Scene {
 		})
 	}
 
+	getEnvsInfo() {
+		let personXoy = ''
+		this.personList.forEach(person => {
+			personXoy += `${person.name}(x: ${person.x}, y:${person.y})`
+		})
+		return {
+			personXoy
+		}
+	}
+
 	create() {
 		const cursors = this.input.keyboard?.addKeys({
 			up: Phaser.Input.Keyboard.KeyCodes.W,
@@ -81,7 +91,7 @@ export class Scene extends Phaser.Scene {
 			x,
 			y,
 			texture,
-		}, characterId === '1' ? { text: '去一个陌生的地方写作' } : undefined)
+		})
 		Reflect.set(window, person.name, person)
 		return person
 	}
